@@ -125,16 +125,21 @@ export default function Home() {
               </p>
               <ul className="clients__grid">
                 {clients.map((c) => (
-                  <li className="client" key={c.name}>
-                    <span className="client__mono" aria-hidden="true">
-                      {c.mono}
-                    </span>
-                    <span className="client__text">
-                      <span className="client__name">{c.name}</span>
-                      <span className="client__meta">
-                        {c.sector} · {c.region}
+                  <li key={c.name}>
+                    <a className="client" href={c.url} target="_blank" rel="noopener" aria-label={`${c.name} — visit site`}>
+                      <span className="client__mono" aria-hidden="true">
+                        {c.mono}
                       </span>
-                    </span>
+                      <span className="client__text">
+                        <span className="client__name">{c.name}</span>
+                        <span className="client__meta">
+                          {c.sector} · {c.region}
+                        </span>
+                      </span>
+                      <span className="client__arrow" aria-hidden="true">
+                        <Arrow />
+                      </span>
+                    </a>
                   </li>
                 ))}
               </ul>
@@ -190,11 +195,18 @@ export default function Home() {
                     <span className="project__metric-label">{p.metric.label}</span>
                   </div>
                 </div>
-                <ul className="tags">
-                  {p.tags.map((t) => (
-                    <li key={t}>{t}</li>
-                  ))}
-                </ul>
+                <div className="project__foot">
+                  <ul className="tags">
+                    {p.tags.map((t) => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                  {p.url && (
+                    <a className="project__visit" href={p.url} target="_blank" rel="noopener">
+                      {new URL(p.url).hostname.replace(/^www\./, "")} <Arrow />
+                    </a>
+                  )}
+                </div>
               </article>
             ))}
           </div>

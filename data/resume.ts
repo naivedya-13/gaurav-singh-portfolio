@@ -51,14 +51,15 @@ export const projects: {
     kind: "Event booking platform",
     period: "Ongoing",
     icon: "stage",
-    url: "https://www.dubaiopera.com",
-    metric: { value: "Live", label: "dubaiopera.com" },
+    url: "https://www.dubaiopera.com/en",
+    metric: { value: "Live", label: "in production" },
     summary:
       "Frontend features for the public-facing booking site of Dubai’s flagship performing-arts venue, plus backend REST API integration and documentation that powers its booking workflows.",
     tags: ["Next.js", "Node.js", "REST APIs", "API Docs"],
   },
   {
     name: "SlasherPlay",
+    url: "https://www.slasherplay.tv",
     kind: "OTT streaming platform",
     period: "Oct 2025 — Apr 2026",
     icon: "play",
@@ -69,6 +70,7 @@ export const projects: {
   },
   {
     name: "Novo Cinemas",
+    url: "https://www.novocinemas.com",
     kind: "Multi-country cinema booking",
     period: "Jan 2025 — Jul 2025",
     icon: "ticket",
@@ -79,6 +81,7 @@ export const projects: {
   },
   {
     name: "Cinépolis GCC",
+    url: "https://www.cinepolisgulf.com",
     kind: "Regional cinema booking",
     period: "Gulf region",
     icon: "ticket",
@@ -89,6 +92,7 @@ export const projects: {
   },
   {
     name: "Cinépolis India",
+    url: "https://cinepolisindia.com",
     kind: "Cinema ticket booking",
     period: "Jun 2023 — Jan 2024",
     icon: "ticket",
@@ -100,11 +104,11 @@ export const projects: {
 ];
 
 export const clients = [
-  { name: "Dubai Opera", mono: "DO", sector: "Live events", region: "UAE" },
-  { name: "Novo Cinemas", mono: "NC", sector: "Cinema", region: "UAE · QA" },
-  { name: "Cinépolis GCC", mono: "CG", sector: "Cinema", region: "GCC" },
-  { name: "Cinépolis India", mono: "CI", sector: "Cinema", region: "India" },
-  { name: "SlasherPlay", mono: "SP", sector: "OTT", region: "Streaming" },
+  { name: "Dubai Opera", url: "https://www.dubaiopera.com/en", mono: "DO", sector: "Live events", region: "UAE" },
+  { name: "Novo Cinemas", url: "https://www.novocinemas.com", mono: "NC", sector: "Cinema", region: "UAE · QA" },
+  { name: "Cinépolis GCC", url: "https://www.cinepolisgulf.com", mono: "CG", sector: "Cinema", region: "GCC" },
+  { name: "Cinépolis India", url: "https://cinepolisindia.com", mono: "CI", sector: "Cinema", region: "India" },
+  { name: "SlasherPlay", url: "https://www.slasherplay.tv", mono: "SP", sector: "OTT", region: "Streaming" },
 ];
 
 export const journey = [

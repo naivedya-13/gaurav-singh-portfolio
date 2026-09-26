@@ -558,6 +558,7 @@ em {
   gap: 12px;
 }
 .client {
+  height: 100%;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -594,6 +595,23 @@ em {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  flex-grow: 1;
+}
+.client__arrow {
+  display: grid;
+  color: var(--faint);
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity 0.3s, transform 0.3s var(--ease), color 0.3s;
+}
+.client:hover .client__arrow,
+.client:focus-visible .client__arrow {
+  opacity: 1;
+  transform: none;
+  color: var(--accent);
+}
+.client:focus-visible {
+  border-radius: 16px;
 }
 .client__name {
   font-weight: 500;
@@ -830,6 +848,39 @@ em {
 .tags li:hover {
   border-color: var(--line-strong);
   color: var(--text);
+}
+
+/* Project footer */
+.project__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.project__visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  color: var(--muted);
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.project__visit svg {
+  transition: transform 0.3s var(--ease);
+}
+.project__visit:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.project__visit:hover svg {
+  transform: translate(2px, -2px);
 }
 
 /* Experience */
@@ -1204,7 +1255,7 @@ em {
   .clients__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .client:last-child {
+  .clients__grid li:last-child {
     grid-column: 1 / -1;
   }
   .journey {
@@ -1287,7 +1338,7 @@ em {
     gap: 10px;
     padding: 14px;
   }
-  .client:last-child {
+  .clients__grid li:last-child .client {
     flex-direction: row;
     align-items: center;
   }
