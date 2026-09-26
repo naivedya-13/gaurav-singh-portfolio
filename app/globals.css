@@ -6,10 +6,33 @@
   --muted: #a8a397;
   --faint: #77736a;
   --accent: #ff7a45;
+  --accent-hover: #ff8f61;
   --accent-ink: #1a0d06;
+  --line-strong: #3d3b34;
+  --nav-bg: rgba(15, 15, 13, 0.82);
+  --mark-bg: #f1eee6;
+  --mark-ink: #0f0f0d;
+  color-scheme: dark;
   --radius: 14px;
   --maxw: 1200px;
   --gutter: clamp(20px, 5vw, 48px);
+}
+
+:root[data-theme="light"] {
+  --bg: #f7f5f0;
+  --surface: #ffffff;
+  --line: #e2ddd2;
+  --line-strong: #cbc5b8;
+  --text: #16150f;
+  --muted: #55524a;
+  --faint: #6b675e;
+  --accent: #c2410c;
+  --accent-hover: #a8380a;
+  --accent-ink: #ffffff;
+  --nav-bg: rgba(247, 245, 240, 0.85);
+  --mark-bg: #16150f;
+  --mark-ink: #f7f5f0;
+  color-scheme: light;
 }
 
 *,
@@ -28,6 +51,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
   font-family: var(--font-sans), system-ui, sans-serif;
   font-size: 17px;
   line-height: 1.6;
@@ -97,7 +121,7 @@ em {
 }
 .btn:hover {
   transform: translateY(-2px);
-  background: #ff8f61;
+  background: var(--accent-hover);
 }
 .btn--ghost {
   background: transparent;
@@ -122,7 +146,7 @@ em {
   border-bottom: 1px solid transparent;
 }
 .nav--scrolled {
-  background: rgba(15, 15, 13, 0.82);
+  background: var(--nav-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-color: var(--line);
@@ -145,8 +169,8 @@ em {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: var(--text);
-  color: var(--bg);
+  background: var(--mark-bg);
+  color: var(--mark-ink);
   font-family: var(--font-mono), monospace;
   font-size: 13px;
   font-weight: 500;
@@ -163,6 +187,40 @@ em {
 }
 .nav__links a:not(.btn):hover {
   color: var(--text);
+}
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.3s;
+}
+.theme-toggle:hover {
+  background: var(--surface);
+  border-color: var(--line-strong);
+}
+.theme-toggle:active {
+  transform: rotate(20deg);
+}
+.theme-toggle .icon-sun {
+  display: none;
+}
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: block;
+}
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: none;
 }
 .nav__toggle {
   display: none;
@@ -326,7 +384,7 @@ em {
   transition: border-color 0.3s, transform 0.3s;
 }
 .project:hover {
-  border-color: #3d3b34;
+  border-color: var(--line-strong);
   transform: translateY(-4px);
 }
 .project__top {

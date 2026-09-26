@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { profile } from "@/data/resume";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const links = [
   { href: "#work", label: "Work" },
@@ -38,15 +39,18 @@ export default function Nav({ basePath }: { basePath: string }) {
             Résumé
           </a>
         </nav>
-        <button
-          className="nav__toggle"
-          aria-label={open ? "Close menu" : "Open menu"}
-          aria-expanded={open}
-          onClick={() => setOpen((o) => !o)}
-        >
-          <span />
-          <span />
-        </button>
+        <div className="nav__actions">
+          <ThemeToggle />
+          <button
+            className="nav__toggle"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((o) => !o)}
+          >
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
     </header>
   );
