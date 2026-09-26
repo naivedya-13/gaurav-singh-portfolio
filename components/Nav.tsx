@@ -14,12 +14,30 @@ const links = [
 export default function Nav({ basePath }: { basePath: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+
+    const sections = links
+      .map((l) => document.querySelector<HTMLElement>(l.href))
+      .filter((el): el is HTMLElement => !!el);
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive(`#${e.target.id}`);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    sections.forEach((s) => io.observe(s));
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      io.disconnect();
+    };
   }, []);
 
   return (
@@ -31,15 +49,21 @@ export default function Nav({ basePath }: { basePath: string }) {
         </a>
         <nav className={`nav__links ${open ? "is-open" : ""}`} aria-label="Primary">
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)}>
+            <a
+              key={l.href}
+              href={l.href}
+              className={active === l.href ? "is-active" : undefined}
+              aria-current={active === l.href ? "true" : undefined}
+              onClick={() => setOpen(false)}
+            >
               {l.label}
             </a>
           ))}
-          <a className="btn btn--small" href={`${basePath}/${profile.resume}`} target="_blank" rel="noopener">
-            Résumé
-          </a>
         </nav>
         <div className="nav__actions">
+          <a className="btn btn--small nav__resume" href={`${basePath}/${profile.resume}`} target="_blank" rel="noopener">
+            Résumé
+          </a>
           <ThemeToggle />
           <button
             className="nav__toggle"
