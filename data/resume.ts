@@ -12,13 +12,6 @@ export const profile = {
     "I build fast, scalable booking and streaming products used across India and the Middle East — OTT platforms, multi-country cinema booking and live-event ticketing. My foundation is the frontend (React, Next.js, performance and SEO), and I own features end to end with Node.js, Express and REST APIs.",
 };
 
-export const stats = [
-  { value: "4+", label: "Years building production web apps" },
-  { value: "8+", label: "Client platforms shipped on a shared architecture" },
-  { value: "60→100", label: "Cinépolis SEO score after the Next.js SSR migration" },
-  { value: "40%", label: "Faster initial page loads from SSR and code splitting" },
-];
-
 export const experience = [
   {
     role: "Full Stack Developer",
@@ -34,23 +27,22 @@ export const experience = [
   },
 ];
 
-export type ProjectIcon = "stage" | "play" | "ticket";
-
 export const projects: {
   name: string;
   kind: string;
   period: string;
-  icon: ProjectIcon;
   url?: string;
+  /** Basename of screenshots in public/projects: `<shot>.jpg` (desktop) and `<shot>-mobile.jpg`. */
+  shot: string;
   metric: { value: string; label: string };
   summary: string;
   tags: string[];
 }[] = [
   {
     name: "Dubai Opera",
+    shot: "dubai-opera",
     kind: "Event booking platform",
     period: "Ongoing",
-    icon: "stage",
     url: "https://www.dubaiopera.com/en",
     metric: { value: "Live", label: "in production" },
     summary:
@@ -59,10 +51,10 @@ export const projects: {
   },
   {
     name: "SlasherPlay",
+    shot: "slasherplay",
     url: "https://www.slasherplay.tv",
     kind: "OTT streaming platform",
     period: "Oct 2025 — Apr 2026",
-    icon: "play",
     metric: { value: "+30%", label: "paid memberships" },
     summary:
       "Monthly, quarterly and yearly subscriptions with Apple Pay and Tap Payments, plus authenticated, protected streaming workflows that cut unauthorised access cases by 40%.",
@@ -70,10 +62,10 @@ export const projects: {
   },
   {
     name: "Novo Cinemas",
+    shot: "novo-cinemas",
     url: "https://www.novocinemas.com",
     kind: "Multi-country cinema booking",
     period: "Jan 2025 — Jul 2025",
-    icon: "ticket",
     metric: { value: "+20%", label: "booking completion" },
     summary:
       "English and Arabic (RTL) booking interfaces for Qatar and the UAE, with Cybersource payments, loyalty, coupons and gift cards — usability up 30%.",
@@ -81,10 +73,10 @@ export const projects: {
   },
   {
     name: "Cinépolis GCC",
+    shot: "cinepolis-gulf",
     url: "https://www.cinepolisgulf.com",
     kind: "Regional cinema booking",
     period: "Gulf region",
-    icon: "ticket",
     metric: { value: "GCC", label: "multi-country platform" },
     summary:
       "Cinema ticket booking for Cinépolis across the Gulf — showtimes, seat selection and checkout flows built on the reusable booking architecture shared across Enpointe’s cinema clients.",
@@ -92,10 +84,10 @@ export const projects: {
   },
   {
     name: "Cinépolis India",
+    shot: "cinepolis-india",
     url: "https://cinepolisindia.com",
     kind: "Cinema ticket booking",
     period: "Jun 2023 — Jan 2024",
-    icon: "ticket",
     metric: { value: "60→100", label: "SEO score" },
     summary:
       "Migrated the booking platform from React.js to Next.js with server-side rendering and rendering optimisations, taking the SEO score from 60 to a perfect 100.",
@@ -112,30 +104,33 @@ export const clients = [
 ];
 
 export const journey = [
-  { date: "Jun 2023", title: "Cinépolis India", note: "React → Next.js, SEO 60→100" },
-  { date: "Jan 2025", title: "Novo Cinemas", note: "EN/AR booking for Qatar & UAE" },
-  { date: "Oct 2025", title: "SlasherPlay", note: "Subscriptions & protected streaming" },
-  { date: "Now", title: "Dubai Opera", note: "Full-stack: frontend + REST APIs" },
+  { year: "2023", title: "Cinépolis India", note: "React → Next.js migration · SEO 60 → 100" },
+  { year: "2025", title: "Novo Cinemas", note: "English / Arabic booking for Qatar & UAE" },
+  { year: "2025", title: "SlasherPlay", note: "OTT subscriptions & protected streaming" },
+  { year: "2026", title: "Dubai Opera", note: "Full-stack — frontend and REST APIs", current: true },
+];
+
+export const numbers = [
+  { value: "08", unit: "+", label: "Platforms shipped" },
+  { value: "60→100", unit: "", label: "SEO score, Cinépolis" },
+  { value: "40", unit: "%", label: "Faster page loads" },
+  { value: "35", unit: "%", label: "Faster development" },
+];
+
+export const services = [
+  { title: "Booking systems", detail: ["Cinema", "Live events", "Ticketing"] },
+  { title: "Payment flows", detail: ["Apple Pay", "Cybersource", "Tap Payments"] },
+  { title: "Streaming platforms", detail: ["Authentication", "Subscriptions", "Protected playback"] },
+  { title: "High-performance web apps", detail: ["SSR", "SEO", "Core Web Vitals"] },
 ];
 
 export const skills = [
-  {
-    group: "Frontend",
-    items: ["React.js", "Next.js", "Vue.js", "TypeScript", "JavaScript", "Tailwind CSS", "Redux Toolkit", "Context API"],
-  },
-  {
-    group: "Backend & APIs",
-    items: ["Node.js", "Express.js", "REST API design", "JWT authentication", "Postman", "API documentation"],
-  },
-  { group: "Data", items: ["MySQL", "MongoDB"] },
-  {
-    group: "Performance",
-    items: ["SSR / SSG", "Core Web Vitals", "Lazy loading", "Code splitting", "Vercel", "Axios"],
-  },
-  {
-    group: "Motion & UI",
-    items: ["GSAP", "Framer Motion", "Responsive design", "Accessibility", "Cross-browser"],
-  },
+  { group: "Frontend", items: ["React", "Next.js", "Vue", "TypeScript", "JavaScript", "Tailwind CSS", "Redux Toolkit"] },
+  { group: "Backend", items: ["Node.js", "Express", "REST APIs", "JWT auth", "API documentation"] },
+  { group: "Database", items: ["MySQL", "MongoDB"] },
+  { group: "Performance", items: ["SSR", "SSG", "Core Web Vitals", "Lazy loading", "Code splitting"] },
+  { group: "Motion & UI", items: ["GSAP", "Framer Motion", "Responsive design", "Accessibility"] },
+  { group: "Tools", items: ["Postman", "Vercel", "Axios"] },
 ];
 
 export const education = [

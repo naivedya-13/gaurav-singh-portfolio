@@ -41,13 +41,13 @@ export default function Nav({ basePath }: { basePath: string }) {
   }, []);
 
   return (
-    <header className={`nav ${scrolled ? "nav--scrolled" : ""}`}>
-      <div className="nav__inner container">
+    <header className={`nav ${scrolled ? "nav--scrolled" : ""} ${open ? "nav--open" : ""}`}>
+      <div className="nav__pill">
         <a href="#top" className="nav__brand" aria-label="Gaurav Singh — home">
-          <span className="nav__mark">GS</span>
+          <span className="nav__mark">G</span>
           <span className="nav__name">Gaurav Singh</span>
         </a>
-        <nav className={`nav__links ${open ? "is-open" : ""}`} aria-label="Primary">
+        <nav className="nav__links" aria-label="Primary">
           {links.map((l) => (
             <a
               key={l.href}
@@ -61,10 +61,10 @@ export default function Nav({ basePath }: { basePath: string }) {
           ))}
         </nav>
         <div className="nav__actions">
-          <a className="btn btn--small nav__resume" href={`${basePath}/${profile.resume}`} target="_blank" rel="noopener">
-            Résumé
-          </a>
           <ThemeToggle />
+          <a className="nav__resume" href={`${basePath}/${profile.resume}`} target="_blank" rel="noopener">
+            Résumé <span aria-hidden="true">↗</span>
+          </a>
           <button
             className="nav__toggle"
             aria-label={open ? "Close menu" : "Open menu"}

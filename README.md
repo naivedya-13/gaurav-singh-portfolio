@@ -17,6 +17,8 @@ Open http://localhost:3000.
 
 All résumé content — summary, stats, experience, projects, skills and education — lives in [`data/resume.ts`](data/resume.ts). The résumé PDF is served from `public/Gaurav-Singh-Resume.pdf`.
 
+Project screenshots live in `public/projects/` as `<shot>.jpg` (1440×900 desktop) and `<shot>-mobile.jpg` (phone); each project's `shot` field in `data/resume.ts` points at them.
+
 ## Deploy
 
 Every push to `main` builds a static export and publishes it through GitHub Actions (`.github/workflows/deploy.yml`).
