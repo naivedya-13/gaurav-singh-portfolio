@@ -1,14 +1,37 @@
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
-import { profile, stats, experience, projects, skills, education } from "@/data/resume";
+import { profile, stats, experience, projects, skills, education, clients, journey } from "@/data/resume";
+import type { ProjectIcon } from "@/data/resume";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-const clients = ["Dubai Opera", "Novo Cinemas", "Cinepolis India", "SlasherPlay", "Enpointe Global"];
 
 function Arrow() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <path d="M4 12L12 4M12 4H5.5M12 4v6.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function Icon({ name }: { name: ProjectIcon }) {
+  const common = { stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      {name === "play" && (
+        <>
+          <rect x="3" y="4" width="18" height="14" rx="3" {...common} />
+          <path d="M10 8.5v5l4.5-2.5L10 8.5ZM8 21h8" {...common} />
+        </>
+      )}
+      {name === "ticket" && (
+        <path
+          d="M3 8a2 2 0 0 0 0 4v0a2 2 0 0 1 0 4v1a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-1a2 2 0 0 1 0-4 2 2 0 0 1 0-4V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v1ZM14 6v2M14 11v2M14 16v2"
+          {...common}
+        />
+      )}
+      {name === "stage" && (
+        <path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5a3 3 0 0 1 6 0v5M3 9h18" {...common} />
+      )}
     </svg>
   );
 }
@@ -84,7 +107,7 @@ export default function Home() {
                   </div>
                   <div>
                     <dt>shipped</dt>
-                    <dd>8+ platforms · IN · QA · AE</dd>
+                    <dd>8+ platforms · India · GCC</dd>
                   </div>
                   <div>
                     <dt>status</dt>
@@ -95,15 +118,26 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="marquee reveal" aria-label="Platforms shipped for">
-            <div className="marquee__track">
-              {[0, 1].map((k) => (
-                <ul key={k} aria-hidden={k === 1 ? "true" : undefined}>
-                  {clients.map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-              ))}
+          <div className="container">
+            <div className="clients reveal">
+              <p className="clients__label">
+                Shipped for <span>{clients.length} platforms across India &amp; the GCC</span>
+              </p>
+              <ul className="clients__grid">
+                {clients.map((c) => (
+                  <li className="client" key={c.name}>
+                    <span className="client__mono" aria-hidden="true">
+                      {c.mono}
+                    </span>
+                    <span className="client__text">
+                      <span className="client__name">{c.name}</span>
+                      <span className="client__meta">
+                        {c.sector} · {c.region}
+                      </span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
@@ -126,7 +160,12 @@ export default function Home() {
             {projects.map((p, i) => (
               <article className={`project spotlight reveal ${i === 0 ? "project--featured" : ""}`} key={p.name}>
                 <div className="project__top">
-                  <span className="project__index">{String(i + 1).padStart(2, "0")}</span>
+                  <span className="project__badge">
+                    <span className="project__icon">
+                      <Icon name={p.icon} />
+                    </span>
+                    <span className="project__index">{String(i + 1).padStart(2, "0")}</span>
+                  </span>
                   <span className="project__period">
                     {p.period === "Ongoing" && <span className="dot dot--small" aria-hidden="true" />}
                     {p.period}
@@ -186,6 +225,17 @@ export default function Home() {
               </div>
             </div>
           ))}
+
+          <ol className="journey reveal" aria-label="Project timeline">
+            {journey.map((j, i) => (
+              <li className={`journey__step ${i === journey.length - 1 ? "is-current" : ""}`} key={j.title}>
+                <span className="journey__dot" aria-hidden="true" />
+                <p className="journey__date">{j.date}</p>
+                <p className="journey__title">{j.title}</p>
+                <p className="journey__note">{j.note}</p>
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* Skills */}
@@ -250,8 +300,13 @@ export default function Home() {
       </main>
 
       <footer className="footer container">
-        <p>© {new Date().getFullYear()} Gaurav Singh · Mumbai</p>
-        <a href="#top">Back to top ↑</a>
+        <p className="footer__word" aria-hidden="true">
+          Gaurav Singh<em>.</em>
+        </p>
+        <div className="footer__row">
+          <p>© {new Date().getFullYear()} Gaurav Singh · Full Stack Engineer · Mumbai</p>
+          <a href="#top">Back to top ↑</a>
+        </div>
       </footer>
     </>
   );

@@ -15,7 +15,7 @@ export const profile = {
 export const stats = [
   { value: "4+", label: "Years building production web apps" },
   { value: "8+", label: "Client platforms shipped on a shared architecture" },
-  { value: "60→100", label: "Cinepolis SEO score after the Next.js SSR migration" },
+  { value: "60→100", label: "Cinépolis SEO score after the Next.js SSR migration" },
   { value: "40%", label: "Faster initial page loads from SSR and code splitting" },
 ];
 
@@ -34,11 +34,23 @@ export const experience = [
   },
 ];
 
-export const projects = [
+export type ProjectIcon = "stage" | "play" | "ticket";
+
+export const projects: {
+  name: string;
+  kind: string;
+  period: string;
+  icon: ProjectIcon;
+  url?: string;
+  metric: { value: string; label: string };
+  summary: string;
+  tags: string[];
+}[] = [
   {
     name: "Dubai Opera",
     kind: "Event booking platform",
     period: "Ongoing",
+    icon: "stage",
     url: "https://www.dubaiopera.com",
     metric: { value: "Live", label: "dubaiopera.com" },
     summary:
@@ -49,6 +61,7 @@ export const projects = [
     name: "SlasherPlay",
     kind: "OTT streaming platform",
     period: "Oct 2025 — Apr 2026",
+    icon: "play",
     metric: { value: "+30%", label: "paid memberships" },
     summary:
       "Monthly, quarterly and yearly subscriptions with Apple Pay and Tap Payments, plus authenticated, protected streaming workflows that cut unauthorised access cases by 40%.",
@@ -58,20 +71,47 @@ export const projects = [
     name: "Novo Cinemas",
     kind: "Multi-country cinema booking",
     period: "Jan 2025 — Jul 2025",
+    icon: "ticket",
     metric: { value: "+20%", label: "booking completion" },
     summary:
       "English and Arabic (RTL) booking interfaces for Qatar and the UAE, with Cybersource payments, loyalty, coupons and gift cards — usability up 30%.",
     tags: ["Next.js", "RTL / i18n", "Cybersource", "Loyalty"],
   },
   {
-    name: "Cinepolis India",
+    name: "Cinépolis GCC",
+    kind: "Regional cinema booking",
+    period: "Gulf region",
+    icon: "ticket",
+    metric: { value: "GCC", label: "multi-country platform" },
+    summary:
+      "Cinema ticket booking for Cinépolis across the Gulf — showtimes, seat selection and checkout flows built on the reusable booking architecture shared across Enpointe’s cinema clients.",
+    tags: ["Next.js", "Booking flows", "Payments", "Reusable UI"],
+  },
+  {
+    name: "Cinépolis India",
     kind: "Cinema ticket booking",
     period: "Jun 2023 — Jan 2024",
+    icon: "ticket",
     metric: { value: "60→100", label: "SEO score" },
     summary:
       "Migrated the booking platform from React.js to Next.js with server-side rendering and rendering optimisations, taking the SEO score from 60 to a perfect 100.",
     tags: ["React → Next.js", "SSR", "SEO", "Core Web Vitals"],
   },
+];
+
+export const clients = [
+  { name: "Dubai Opera", mono: "DO", sector: "Live events", region: "UAE" },
+  { name: "Novo Cinemas", mono: "NC", sector: "Cinema", region: "UAE · QA" },
+  { name: "Cinépolis GCC", mono: "CG", sector: "Cinema", region: "GCC" },
+  { name: "Cinépolis India", mono: "CI", sector: "Cinema", region: "India" },
+  { name: "SlasherPlay", mono: "SP", sector: "OTT", region: "Streaming" },
+];
+
+export const journey = [
+  { date: "Jun 2023", title: "Cinépolis India", note: "React → Next.js, SEO 60→100" },
+  { date: "Jan 2025", title: "Novo Cinemas", note: "EN/AR booking for Qatar & UAE" },
+  { date: "Oct 2025", title: "SlasherPlay", note: "Subscriptions & protected streaming" },
+  { date: "Now", title: "Dubai Opera", note: "Full-stack: frontend + REST APIs" },
 ];
 
 export const skills = [
